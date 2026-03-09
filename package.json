@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:client": "cd client && gleam build && cd .. && npx esbuild ./client/build/dev/javascript/client/app/app.mjs --bundle --outfile=./server/priv/static/app.mjs --format=esm --footer:js=\"main();\"",
+    "server": "cd server && gleam run",
+    "tts": "cd tts_server && uvicorn server:app --port 8766",
+    "dev": "npm run build:client && npm run server",
+    "start": "npm run build:client && (npm run tts & npm run server)",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "esbuild": "^0.27.3"
+  }
+}
